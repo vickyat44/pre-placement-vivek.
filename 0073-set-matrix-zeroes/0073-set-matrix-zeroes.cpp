@@ -1,44 +1,30 @@
 class Solution {
 public:
     void setZeroes(vector<vector<int>>& matrix) {
-        int m=matrix.size();
-        int n=matrix[0].size();
-        int col0=1;
-
-        //traversing and marking the first row and col as mark for zero
-        for(int i=0;i<matrix.size();i++){
-            for(int j=0;j<matrix[0].size();j++){
-                if(matrix[i][j]==0){
-                    matrix[i][0]=0;
-                    if(j!=0){
-                    matrix[0][j]=0;
-                    }else{
-                        col0= 0;
-                    }
+        int n = matrix.size();
+        int m = matrix[0].size();
+        
+        // Create two arrays to store information about which rows and columns to zero.
+        vector<bool> zeroRow(n, false);
+        vector<bool> zeroCol(m, false);
+        
+        // Iterate through the matrix and mark rows and columns that need to be zeroed.
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (matrix[i][j] == 0) {
+                    zeroRow[i] = true;
+                    zeroCol[j] = true;
                 }
             }
         }
-// except the marked row of the matrix we check the row and col of the element and make them 0
-        for(int i=1;i<matrix.size();i++){
-            for(int j=1;j<matrix[0].size();j++){
-                if(matrix[0][j]==0||matrix[i][0]==0){
-                    matrix[i][j]=0;
+        
+        // Update the matrix based on the information stored in the arrays.
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (zeroRow[i] || zeroCol[j]) {
+                    matrix[i][j] = 0;
                 }
             }
         }
-    //    now have to check for the first rows itself
-    // so firstly we will check for all col elements if row [0] is 0 the all elements in 1st col are zero
-       if(matrix[0][0]==0){
-           for(int j=0;j<matrix[0].size();j++){
-               matrix[0][j]=0;
-           }
-       }
-
-    //    now we made a variable for the first row to mark so we check for the first row now
-       if(col0==0){
-           for(int i=0;i<matrix.size();i++){
-               matrix[i][0]=0;
-           }
-       }
     }
 };
