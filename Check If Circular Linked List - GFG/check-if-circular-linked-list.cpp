@@ -79,10 +79,8 @@ bool isCircular(Node *head)
     {
         temp=temp->next;
     }
-    if(temp==head)
-    return 1;
-    else 
-    return 0;
+    return (temp==head);
+    
   // Your code here
 }
 
