@@ -72,33 +72,20 @@ struct Node
 */
 
 /* Should return true if linked list is circular, else false */
-// bool isCircular(Node *head)
-// {
-//     Node* temp=head;
-//     while(temp!=NULL ||  temp!=head)
-//     {
-//         temp=temp->next;
-//     }
-//     if(temp==head)
-//     return 1;
-//     else 
-//     return 0;
-//   // Your code here
-// }
-
 bool isCircular(Node *head)
 {
-    if (head == NULL)
-        return false;
-    
-    Node* temp = head->next;
-    
-    while (temp != NULL && temp != head) {
-        temp = temp->next;
+    Node* temp=head->next;
+    while(temp!=NULL &&  temp!=head)
+    {
+        temp=temp->next;
     }
-    
-    return (temp == head);
+    if(temp==head)
+    return 1;
+    else 
+    return 0;
+  // Your code here
 }
+
 
 
 
